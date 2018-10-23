@@ -1,0 +1,12 @@
+{
+  "name": "express-echo-api",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A sample Node.js app returning the request details",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "~4.16.0"
+  }
+}
