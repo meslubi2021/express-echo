@@ -22,10 +22,11 @@ var reqData = function(req) {
 };
 
 app.all('*', function (req, res) {
-  sleep(1000)
-  res.set('Content-Type', 'application/json');
-  var response = reqData(req);
-  res.status(200).send(JSON.stringify(response,null,2));
+  sleep(1000).then{
+   res.set('Content-Type', 'application/json');
+   var response = reqData(req);
+   res.status(200).send(JSON.stringify(response,null,2));
+  }
 });
 
 module.exports = app;
