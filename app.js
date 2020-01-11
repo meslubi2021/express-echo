@@ -25,7 +25,7 @@ var reqData = function(req) {
 
 
 
-app.use((req, res, next) => setTimeout(next, 500));
+app.use((req, res, next) => setTimeout(next, 99));
 
 app.all('*', function(req, res){
    res.set('Content-Type', 'application/json');
