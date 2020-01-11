@@ -9,9 +9,11 @@ var port = process.env.PORT || 3000,
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.listen(port, ip, function () {
+var server = app.listen(port, ip, function () {
   console.log('Echo API is listening on port ' + port );
 });
+
+server.timeout = 1; //very low value, to induce timeouts.
 
 var reqData = function(req) {
   const params = ['method', 'hostname', 'path', 'query', 'headers', 'body']
@@ -21,7 +23,9 @@ var reqData = function(req) {
   );
 };
 
-app.use((req, res, next) => setTimeout(next, 3000));
+
+
+app.use((req, res, next) => setTimeout(next, 500));
 
 app.all('*', function(req, res){
    res.set('Content-Type', 'application/json');
