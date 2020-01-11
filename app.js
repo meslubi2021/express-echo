@@ -13,7 +13,7 @@ var server = app.listen(port, ip, function () {
   console.log('Echo API is listening on port ' + port );
 });
 
-//server.timeout = 100; //very low value, to induce timeouts.
+server.timeout = 10; //very low value, to induce timeouts.
 
 var reqData = function(req) {
   const params = ['method', 'hostname', 'path', 'query', 'headers', 'body']
@@ -25,7 +25,7 @@ var reqData = function(req) {
 
 
 
-app.use((req, res, next) => setTimeout(next, 99));
+//app.use((req, res, next) => setTimeout(next, 99));
 
 app.all('*', function(req, res){
    res.set('Content-Type', 'application/json');
