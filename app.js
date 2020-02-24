@@ -28,13 +28,20 @@ var reqData = function(req) {
 
 //app.use((req, res, next) => setTimeout(next, 99));
 var timeSleep = 100
-app.all('*', function(req, res){
-   timeSleep = req.query.sleep
+app.get('/sleep', function(req, res){
+   timeSleep = req.query.time
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
    console.log("sleeping for: " + timeSleep + " ms")
    setTimeout((function(){res.send(JSON.stringify(response,null,2))}),timeSleep);
    console.log("done all")   
+});
+
+app.get('/echo', function(req, res){
+   res.set('Content-Type', 'application/json');
+   var response = reqData(req);
+   res.send(JSON.stringify(response,null,2));
+   console.log("done all")
 });
 
 module.exports = app;
