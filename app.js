@@ -31,7 +31,7 @@ var reqData = function(req) {
 app.all('*', function(req, res){
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
-   setTimeout(returnLater(res,response),5000);
+   setTimeout(returnLater,150000,res,response);
 });
 
 function returnLater(res, response){
