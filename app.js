@@ -27,19 +27,14 @@ var reqData = function(req) {
 
 
 //app.use((req, res, next) => setTimeout(next, 99));
-
+var timeSleep = 100
 app.all('*', function(req, res){
+   timeSleep = req.query.sleep
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
-   delayedResp(res,response);
+   console.log("sleeping for: " + timeSleep + " ms")
+   setTimeout((function(){res.send(JSON.stringify(response,null,2))}),timeSleep);
    console.log("done all")   
 });
 
-async function delayedResp(res,response){
-   setInterval(returnLater, 150000, res, response)
-}
-
-function returnLater(res, response){
-   res.status(444).send(JSON.stringify(response,null,2));
-}
 module.exports = app;
