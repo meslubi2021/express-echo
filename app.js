@@ -15,6 +15,7 @@ var server = app.listen(port, ip, function () {
 
 server.timeout = 180000; //very low value, to induce timeouts.
 
+
 var reqData = function(req) {
   const params = ['method', 'hostname', 'path', 'query', 'headers', 'body']
   return params.reduce(
@@ -30,8 +31,10 @@ var reqData = function(req) {
 app.all('*', function(req, res){
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
-   res.status(444).send(JSON.stringify(response,null,2));
+   setTimeout(returnLater(res,response),5000);
 });
 
-
+function returnLater(res, response){
+   res.status(444).send(JSON.stringify(response,null,2));
+}
 module.exports = app;
