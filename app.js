@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
-var port = process.env.PORT || 3000,
+var port = process.env.PORT || 60301,
     ip   = process.env.IP   || '0.0.0.0';
 
 app.use(express.json());
@@ -37,11 +37,18 @@ app.get('/sleep', function(req, res){
    console.log("done all")   
 });
 
-app.get('/echo', function(req, res){
+app.get('/', function(req, res){
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
    res.send(JSON.stringify(response,null,2));
-   console.log("done all")
+   console.log(response)
+});
+
+app.post('/', function(req, res){
+   res.set('Content-Type', 'application/json');
+   var response = reqData(req);
+   res.send(JSON.stringify(response,null,2));
+   console.log(response)
 });
 
 module.exports = app;
