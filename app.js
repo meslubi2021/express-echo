@@ -31,6 +31,7 @@ var timeSleep = 100
 app.get('/sleep', function(req, res){
    timeSleep = req.query.time
    res.set('Content-Type', 'application/json');
+   res.set('Location', 'http://www.example.org');
    var response = reqData(req);
    console.log("sleeping for: " + timeSleep + " ms")
    setTimeout((function(){res.send(JSON.stringify(response,null,2))}),timeSleep);
