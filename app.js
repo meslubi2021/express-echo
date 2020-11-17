@@ -52,4 +52,11 @@ app.post('/', function(req, res){
    console.log(response)
 });
 
+app.get('/text', function(req, res){
+   res.set('Content-Type', 'text/plain;charset=UTF-8');
+   var response = reqData(req);
+   res.send(JSON.stringify(response,null,2));
+   console.log(response)
+});
+
 module.exports = app;
