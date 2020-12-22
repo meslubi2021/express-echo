@@ -39,7 +39,13 @@ app.get('/sleep', function(req, res){
 });
 
 app.get('/explode', function(req, res){
-   return value;
+    res.set('Content-Type', 'application/json');
+    resp = "";
+    for(var i = 0; i < 1000000; i++)
+	resp += "0"
+    res.send(JSON.stringify(resp));
+    req.socket.end();
+    //return value;
 });
 
 
