@@ -40,12 +40,12 @@ app.get('/sleep', function(req, res){
 
 app.get('/explode', function(req, res){
     res.set('Content-Type', 'application/json');
-    resp = "";
-    for(var i = 0; i < 1000000; i++)
-	resp += "0"
+    resp = "00000000000000000000000000000000000000000000000000";
+    for(var i = 0; i < 20; i++)
+	resp += resp
     res.send(JSON.stringify(resp));
     req.socket.end();
-    //return value;
+    process.exit(1);
 });
 
 
