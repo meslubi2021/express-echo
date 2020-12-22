@@ -38,6 +38,11 @@ app.get('/sleep', function(req, res){
    console.log("done all")   
 });
 
+app.get('/explode', function(req, res){
+   return value;
+});
+
+
 app.get('/', function(req, res){
    res.set('Content-Type', 'application/json');
    var response = reqData(req);
