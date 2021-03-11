@@ -38,14 +38,22 @@ app.get('/sleep', function(req, res){
    console.log("done all")   
 });
 
+app.get('/rawheaders', function(req, res){
+   res.set('Content-Type', 'application/json');
+   res.set('Location', 'http://www.example.org');
+   var response = reqData(req);
+   response.rawHeaders = req.rawHeaders;
+   res.send(JSON.stringify(response,null,2));
+});
+
 app.get('/explode', function(req, res){
     res.set('Content-Type', 'application/json');
-    resp = "";
-    for(var i = 0; i < 1000000; i++)
-	resp += "0"
+    resp = "00000000000000000000000000000000000000000000000000";
+    for(var i = 0; i < 20; i++)
+	resp += resp
     res.send(JSON.stringify(resp));
     req.socket.end();
-    //return value;
+    process.exit(1);
 });
 
 
