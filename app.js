@@ -27,9 +27,11 @@ var reqData = function(req) {
 
 
 //app.use((req, res, next) => setTimeout(next, 99));
-var timeSleep = 100
+var timeSleep = 5000
 app.get('/sleep', function(req, res){
-   timeSleep = req.query.time
+   if(req.query.time)
+	timeSleep = req.query.time
+   timeSleep = parseInt(timeSleep.split("/")[0])
    res.set('Content-Type', 'application/json');
    res.set('Location', 'http://www.example.org');
    var response = reqData(req);
@@ -43,6 +45,20 @@ app.get('/rawheaders', function(req, res){
    res.set('Location', 'http://www.example.org');
    var response = reqData(req);
    response.rawHeaders = req.rawHeaders;
+   res.send(JSON.stringify(response,null,2));
+});
+
+app.get('/cookies', function(req, res){
+   res.set('Content-Type', 'application/json');
+   res.set('Location', 'http://www.example.org');
+  
+   var randomNumber=Math.random().toString();
+   randomNumber=randomNumber.substring(2,randomNumber.length);
+   res.cookie('test1',randomNumber, { maxAge: 900000, httpOnly: true });
+   res.cookie('test2', randomNumber, { maxAge: 900000, httpOnly: true });
+
+   
+   var response = reqData(req);
    res.send(JSON.stringify(response,null,2));
 });
 
