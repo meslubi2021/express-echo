@@ -48,6 +48,15 @@ app.get('/rawheaders', function(req, res){
    res.send(JSON.stringify(response,null,2));
 });
 
+app.get('/nocache', function(req, res){
+   res.set('Content-Type', 'application/json');
+   res.set('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+   var response = reqData(req);
+   res.send(JSON.stringify(response,null,2));
+   console.log(response)
+});
+
+
 app.get('/cookies', function(req, res){
    res.set('Content-Type', 'application/json');
    res.set('Location', 'http://www.example.org');
