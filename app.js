@@ -81,6 +81,12 @@ app.get('/explode', function(req, res){
     process.exit(1);
 });
 
+app.get('/text', function(req, res){
+   res.set('Content-Type', 'text/html');
+   response = "aaaaaa" 
+   res.send(response);
+   console.log(response)
+});
 
 app.get('/', function(req, res){
    res.set('Content-Type', 'application/json');
